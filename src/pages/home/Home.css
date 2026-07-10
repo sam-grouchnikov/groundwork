@@ -1,0 +1,14 @@
+:root {
+    --class-card-stop-1: #22C4E1;
+    --class-card-stop-2: #0EA4BF
+}
+
+
+
+.class-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    padding: 24px;
+    background: linear-gradient(-45deg, var(--class-card-stop-1), var(--class-card-stop-2));
+}

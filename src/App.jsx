@@ -1,51 +1,33 @@
 import { useState } from 'react';
 import {
   Home,
-  User,
-  Settings,
+  FilePenLine,
   BarChart3,
-  Mail,
+  Sparkles,
+  BookOpen,
 } from 'lucide-react';
+import './App.css';
+import logo from './assets/logo.svg';
+import HomePage from './pages/home/Home.jsx';
+import ClassEditorPage from './pages/ClassEditor.jsx';
+import MasteryPage from './pages/Mastery.jsx';
+import GeneratePage from './pages/Generate.jsx';
+import LessonPlansPage from './pages/LessonPlans.jsx';
 
 const NAV_ITEMS = [
   { id: 'home', label: 'Home', icon: Home },
-  { id: 'profile', label: 'Profile', icon: User },
-  { id: 'analytics', label: 'Analytics', icon: BarChart3 },
-  { id: 'messages', label: 'Messages', icon: Mail },
-  { id: 'settings', label: 'Settings', icon: Settings },
+  { id: 'class-editor', label: 'Class Editor', icon: FilePenLine },
+  { id: 'mastery', label: 'Mastery', icon: BarChart3 },
+  { id: 'generate', label: 'Generate', icon: Sparkles },
+  { id: 'lesson-plans', label: 'Lesson Plans', icon: BookOpen },
 ];
-
-function HomePage() {
-  return <PageShell title="Home">This is the Home page content.</PageShell>;
-}
-function ProfilePage() {
-  return <PageShell title="Profile">This is the Profile page content.</PageShell>;
-}
-function AnalyticsPage() {
-  return <PageShell title="Analytics">This is the Analytics page content.</PageShell>;
-}
-function MessagesPage() {
-  return <PageShell title="Messages">This is the Messages page content.</PageShell>;
-}
-function SettingsPage() {
-  return <PageShell title="Settings">This is the Settings page content.</PageShell>;
-}
-
-function PageShell({ title, children }) {
-  return (
-      <div className="h-full w-full p-8">
-        <h1 className="text-2xl font-semibold mb-4">{title}</h1>
-        <p className="text-gray-600">{children}</p>
-      </div>
-  );
-}
 
 const PAGES = {
   home: HomePage,
-  profile: ProfilePage,
-  analytics: AnalyticsPage,
-  messages: MessagesPage,
-  settings: SettingsPage,
+  'class-editor': ClassEditorPage,
+  mastery: MasteryPage,
+  generate: GeneratePage,
+  'lesson-plans': LessonPlansPage,
 };
 
 export default function App() {
@@ -53,30 +35,30 @@ export default function App() {
   const ActiveComponent = PAGES[activeId];
 
   return (
-      <div>
-        {/* Sidebar */}
-        <nav>
-          <div>
-            My App
-          </div>
-          <ul>
-            {NAV_ITEMS.map(({ id, label, icon: Icon }) => (
-                <li key={id}>
-                  <button
-                      onClick={() => setActiveId(id)}
-                  >
-                    <Icon size={18} />
-                    {label}
-                  </button>
-                </li>
-            ))}
-          </ul>
-        </nav>
+    <div className="app-shell">
+      <nav className="navbar">
+        <div className="navbar-brand">
+          <img src={logo} alt="My App logo" className="navbar-logo" />
+          <h3>Groundwork</h3>
+        </div>
+        <ul className="nav-items">
+          {NAV_ITEMS.map(({ id, label, icon: Icon }) => (
+            <li key={id}>
+              <button
+                className={activeId === id ? 'active' : undefined}
+                onClick={() => setActiveId(id)}
+              >
+                <Icon size={18} />
+                <span>{label}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
-        {/* Content area — fills remaining space */}
-        <main className="flex-1 overflow-y-auto">
-          <ActiveComponent />
-        </main>
-      </div>
+      <main className="content">
+        <ActiveComponent />
+      </main>
+    </div>
   );
 }
