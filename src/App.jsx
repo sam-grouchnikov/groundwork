@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import {
   Home,
   FilePenLine,
@@ -13,6 +13,9 @@ import ClassEditorPage from './pages/ClassEditor.jsx';
 import MasteryPage from './pages/Mastery.jsx';
 import GeneratePage from './pages/Generate.jsx';
 import LessonPlansPage from './pages/LessonPlans.jsx';
+import LessonChatPage from './pages/LessonChat.jsx';
+
+const INITIAL_LESSONS = [];
 
 const NAV_ITEMS = [
   { id: 'home', label: 'Home', icon: Home },
@@ -28,11 +31,54 @@ const PAGES = {
   mastery: MasteryPage,
   generate: GeneratePage,
   'lesson-plans': LessonPlansPage,
+  'lesson-chat': LessonChatPage,
 };
 
 export default function App() {
   const [activeId, setActiveId] = useState('home');
+  const [lessons, setLessons] = useState(INITIAL_LESSONS);
+  const [lessonToContinueId, setLessonToContinueId] = useState('');
   const ActiveComponent = PAGES[activeId];
+  const activeNavId = activeId === 'lesson-chat' ? 'lesson-plans' : activeId;
+
+  const addLesson = useCallback((lesson) => {
+    setLessons((currentLessons) => [lesson, ...currentLessons]);
+  }, []);
+
+  const updateLessonMessages = useCallback((lessonId, messages) => {
+    setLessons((currentLessons) =>
+      currentLessons.map((lesson) =>
+        lesson.id === lessonId ? { ...lesson, messages } : lesson,
+      ),
+    );
+  }, []);
+
+  const deleteLesson = useCallback((lessonId) => {
+    setLessons((currentLessons) =>
+      currentLessons.filter((lesson) => lesson.id !== lessonId),
+    );
+    setLessonToContinueId((currentLessonId) =>
+      currentLessonId === lessonId ? '' : currentLessonId,
+    );
+  }, []);
+
+  const openLessonChat = useCallback((lessonId) => {
+    setLessonToContinueId(lessonId);
+    setActiveId('lesson-chat');
+  }, []);
+
+  const openLessonPlans = useCallback(() => {
+    setLessonToContinueId('');
+    setActiveId('lesson-plans');
+  }, []);
+
+  function handleNavigation(pageId) {
+    if (pageId !== 'lesson-chat') {
+      setLessonToContinueId('');
+    }
+
+    setActiveId(pageId);
+  }
 
   return (
     <div className="app-shell">
@@ -45,8 +91,8 @@ export default function App() {
           {NAV_ITEMS.map(({ id, label, icon: Icon }) => (
             <li key={id}>
               <button
-                className={activeId === id ? 'active' : undefined}
-                onClick={() => setActiveId(id)}
+                className={activeNavId === id ? 'active' : undefined}
+                onClick={() => handleNavigation(id)}
               >
                 <Icon size={18} />
                 <span>{label}</span>
@@ -57,7 +103,15 @@ export default function App() {
       </nav>
 
       <main className="content">
-        <ActiveComponent />
+        <ActiveComponent
+          lessonToContinueId={lessonToContinueId}
+          lessons={lessons}
+          onAddLesson={addLesson}
+          onContinueLesson={openLessonChat}
+          onDeleteLesson={deleteLesson}
+          onOpenLessonPlans={openLessonPlans}
+          onUpdateLessonMessages={updateLessonMessages}
+        />
       </main>
     </div>
   );
