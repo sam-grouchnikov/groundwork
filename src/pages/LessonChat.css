@@ -100,7 +100,7 @@
 
 .lesson-chat-message.user .lesson-chat-bubble {
   color: #14201f;
-  background: rgba(111, 237, 219, 0.78);
+  background: var(--actions-secondary);
 }
 
 .lesson-chat-empty,
@@ -140,14 +140,13 @@
 .lesson-chat-composer {
   display: flex;
   width: min(100%, 920px);
-  min-height: 68px;
-  align-items: flex-end;
+  align-items: center;
   gap: 10px;
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 14px 18px;
+  padding: 8px 12px;
   border: 1px solid rgba(121, 133, 139, 0.24);
-  border-radius: 34px;
+  border-radius: 26px;
   background: rgba(255, 255, 255, 0.96);
   box-shadow:
     0 2px 5px rgba(16, 24, 40, 0.09),
@@ -157,8 +156,9 @@
 .lesson-chat-composer textarea {
   flex: 1;
   max-height: 168px;
-  min-height: 32px;
-  padding: 6px 4px;
+  min-height: 30px;
+  padding: 3px 4px;
+  box-sizing: border-box;
   border: 0;
   outline: 0;
   resize: none;
@@ -166,14 +166,14 @@
   color: var(--on-surfaces-on-surface);
   background: transparent;
   font-size: 17px;
-  line-height: 1.4;
+  line-height: 24px;
 }
 
 .lesson-chat-icon-button {
   display: inline-flex;
-  width: 36px;
-  height: 36px;
-  flex: 0 0 36px;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
   align-items: center;
   justify-content: center;
   border: 0;
@@ -204,7 +204,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #657171;
+  background: var(--actions-secondary);
   animation: typingPulse 1s infinite ease-in-out;
 }
 
@@ -240,9 +240,8 @@
   }
 
   .lesson-chat-composer {
-    min-height: 60px;
     gap: 4px;
-    padding: 11px 12px;
-    border-radius: 30px;
+    padding: 8px 10px;
+    border-radius: 24px;
   }
 }

@@ -237,7 +237,6 @@ export default function GeneratePage({
               <span>Evening Sean, Lets Create</span>
             </h1>
             <div className="lesson-required-panel">
-              <label htmlFor="generate-lesson-name">Lesson name</label>
               <input
                 id="generate-lesson-name"
                 onChange={(event) => {

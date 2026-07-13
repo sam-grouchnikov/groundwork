@@ -23,7 +23,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: 32px;
   margin-bottom: 42px;
 }
 
@@ -32,17 +32,17 @@
   align-items: center;
   gap: 22px;
   margin: 0;
-  color: #172020;
+  color: var(--on-surfaces-on-surface);
   font-size: clamp(2rem, 4.4vw, 3rem);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.1;
   letter-spacing: 0;
 }
 
 .headline-icon {
   flex: 0 0 auto;
-  color: #050808;
-  fill: #050808;
+  color: var(--on-surfaces-on-surface);
+  fill: var(--on-surfaces-on-surface);
 }
 
 .lesson-required-panel {
@@ -51,6 +51,7 @@
   flex-direction: column;
   gap: 8px;
 }
+
 
 .lesson-required-panel label {
   color: var(--on-surfaces-on-surface-var);
@@ -64,7 +65,7 @@
   padding: 0 14px;
   box-sizing: border-box;
   border: 1px solid rgba(121, 133, 139, 0.26);
-  border-radius: 14px;
+  border-radius: 32px;
   outline: 0;
   color: var(--on-surfaces-on-surface);
   background: rgba(255, 255, 255, 0.94);
@@ -92,13 +93,12 @@
 .chat-composer {
   display: flex;
   width: min(100%, 960px);
-  min-height: 68px;
-  align-items: flex-end;
+  align-items: center;
   gap: 10px;
   box-sizing: border-box;
-  padding: 14px 18px;
+  padding: 12px 24px;
   border: 1px solid rgba(121, 133, 139, 0.24);
-  border-radius: 34px;
+  border-radius: 26px;
   background: rgba(255, 255, 255, 0.96);
   box-shadow:
     0 2px 5px rgba(16, 24, 40, 0.09),
@@ -108,8 +108,9 @@
 .chat-composer textarea {
   flex: 1;
   max-height: 168px;
-  min-height: 32px;
-  padding: 6px 4px;
+  min-height: 30px;
+  padding: 3px 4px;
+  box-sizing: border-box;
   border: 0;
   outline: 0;
   resize: none;
@@ -117,7 +118,7 @@
   color: var(--on-surfaces-on-surface);
   background: transparent;
   font-size: 17px;
-  line-height: 1.4;
+  line-height: 24px;
 }
 
 .chat-composer textarea::placeholder {
@@ -132,9 +133,9 @@
 
 .composer-icon-button {
   display: inline-flex;
-  width: 36px;
-  height: 36px;
-  flex: 0 0 36px;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
   align-items: center;
   justify-content: center;
   border: 0;
@@ -375,10 +376,9 @@
   }
 
   .chat-composer {
-    min-height: 60px;
     gap: 4px;
-    padding: 11px 12px;
-    border-radius: 30px;
+    padding: 8px 10px;
+    border-radius: 24px;
   }
 
   .chat-composer textarea {
