@@ -3,12 +3,69 @@
     --class-card-stop-2: #0EA4BF
 }
 
-
-
-.class-card {
+.column-home{
     display: flex;
     flex-direction: column;
-    border-radius: 8px;
-    padding: 24px;
-    background: linear-gradient(-45deg, var(--class-card-stop-1), var(--class-card-stop-2));
+    height: 100%;
+    min-height: 0;
+    padding: 4px 32px 0px 32px;
+    box-sizing: border-box;
+    gap: 0px;
+}
+
+.row-home{
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: row;
+    min-height: 0;
+    align-items: stretch;
+    gap: 36px;
+}
+
+.class-details-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex: 1 1 auto;
+    max-height: var(--class-details-max-height, 100%);
+    margin-right: -14px;
+    min-width: 0;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 12px;
+    scrollbar-color: var(--on-surfaces-outline-variant) transparent;
+    scrollbar-width: thin;
+}
+
+.class-details-column::-webkit-scrollbar {
+    width: 10px;
+}
+
+.class-details-column::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.class-details-column::-webkit-scrollbar-thumb {
+    background: var(--on-surfaces-outline-variant);
+    border: 2px solid transparent;
+    border-radius: 999px;
+    background-clip: padding-box;
+}
+
+.teacher-overview-column {
+    flex: 0 0 auto;
+    align-self: stretch;
+    display: flex;
+    min-height: 0;
+}
+
+@media (max-width: 960px) {
+    .column-home {
+        padding: 8px 20px 20px;
+    }
+
+    .row-home {
+        flex-direction: column;
+    }
 }

@@ -1,5 +1,5 @@
 import { BellDot, Search } from 'lucide-react';
-import profileMememoji from '../../../assets/ProfileMememoji.png';
+import profileMememoji from '../../../assets/ProfileMememoji.svg';
 import './TopRow.css';
 
 export default function TopRow({ profileName = 'Sean Combs' }) {

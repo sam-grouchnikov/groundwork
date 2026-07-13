@@ -40,7 +40,7 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  gap: 8px;
+  gap: 4px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -52,16 +52,18 @@
   align-items: center;
   gap: 8px;
   min-height: 40px;
-  padding: 8px 16px;
+  padding: 4px 16px;
   border: 1px solid transparent;
-  border-radius: 12px;
+  border-radius: 26px;
   color: var(--on-surfaces-on-surface-var);
   background: transparent;
   font: inherit;
   cursor: pointer;
 }
 
-.nav-items button:hover,
+.nav-items button:hover {
+  background: var(--backgrounds-sc);
+}
 .nav-items button.active {
   color: var(--on-surfaces-on-surface);
   background: var(--actions-primary);
@@ -69,6 +71,7 @@
 
 .content {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   background: var(--backgrounds-sc-low);
 }
@@ -149,6 +152,7 @@
 .column {
   display: flex;
   flex-direction: column;
+  padding: 0px 24px;
 }
 
 #docs {
