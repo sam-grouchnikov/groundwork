@@ -24,7 +24,7 @@ export default function HomePage() {
       const containerBottom = scrollContainer instanceof Element
           ? scrollContainer.getBoundingClientRect().bottom
           : window.innerHeight;
-      const bottomInset = 4;
+      const bottomInset = 1;
       const nextHeight = Math.max(0, Math.floor(containerBottom - rect.top - bottomInset));
 
       setClassDetailsHeight((currentHeight) => (
