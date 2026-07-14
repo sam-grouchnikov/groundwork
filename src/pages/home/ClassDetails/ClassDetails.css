@@ -26,6 +26,7 @@
     background-color: Black;
     border-radius: 22px;
     color: white;
+    cursor: pointer;
     gap: 16px;
     margin-top: 8px;
     padding: 8px 8px 8px 20px;
@@ -36,6 +37,12 @@
     font-size: 16px;
     font-weight: normal;
     flex-direction: row;
+    transform-origin: left center;
+    transition: transform 160ms ease;
+}
+
+.generate-button:hover {
+    transform: scale(1.04);
 }
 
 .generate-button-circle {
@@ -214,15 +221,40 @@
 }
 
 .lesson-plan-progress-complete {
-    background: #079d08;
+    background: var(--mastery-complete);
 }
 
 .lesson-plan-progress-warning {
-    background: #e3aa04;
+    background: var(--mastery-warning);
 }
 
 .lesson-plan-progress-partial {
-    background: #E32002;
+    background: var(--mastery-partial);
+}
+
+.lesson-plan-create-card {
+    align-items: center;
+    flex-basis: 155px;
+    justify-content: center;
+    border: none;
+    color: var(--on-surfaces-on-surface-var);
+    cursor: pointer;
+    font: inherit;
+    transition: background 160ms ease, box-shadow 160ms ease;
+}
+
+.lesson-plan-create-card:hover {
+    background: var(--backgrounds-sc-blue);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.32);
+}
+
+.lesson-plan-create-card svg {
+    display: block;
+    transition: transform 160ms ease;
+}
+
+.lesson-plan-create-card:hover svg {
+    transform: scale(1.05);
 }
 
 .assignment-card {
@@ -246,14 +278,20 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
     border: none;
     border-radius: 14px;
     background: #d8f0f7;
     color: #0f6472;
     cursor: pointer;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.22);
+    transition: transform 160ms ease, background 160ms ease;
+}
+
+.assignment-action:hover {
+    background: var(--backgrounds-sc-blue-intense);
+    transform: scale(1.08);
 }
 
 .assignment-action svg {

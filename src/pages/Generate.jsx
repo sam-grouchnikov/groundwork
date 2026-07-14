@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import {
+  ArrowLeft,
   BookOpenCheck,
   Bot,
   ClipboardCheck,
@@ -7,7 +8,6 @@ import {
   Lightbulb,
   Mic,
   Plus,
-  RotateCcw,
   Send,
   Sparkles,
   User,
@@ -62,6 +62,7 @@ export default function GeneratePage({
   lessonToContinueId = '',
   lessons = [],
   onAddLesson,
+  onOpenLessonPlans,
   onUpdateLessonMessages,
 }) {
   const [activeLessonId, setActiveLessonId] = useState('');
@@ -162,15 +163,6 @@ export default function GeneratePage({
     }, 700);
   }
 
-  function startNewLessonChat() {
-    setActiveLessonId('');
-    setLessonName('');
-    setMessages([]);
-    setInputValue('');
-    setLessonError('');
-    setIsGenerating(false);
-  }
-
   function handleKeyDown(event) {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
@@ -182,18 +174,16 @@ export default function GeneratePage({
     <section className={`generate-page ${hasConversation ? 'is-chatting' : ''}`}>
       <div className="generate-content">
         {hasConversation ? (
-          <div className="chat-thread" aria-live="polite">
+          <>
             <div className="chat-session-bar">
-              <div className="chat-lesson-context">
-                <BookOpenCheck size={17} />
-                <span>{lessonName}</span>
-              </div>
-              <button type="button" onClick={startNewLessonChat}>
-                <RotateCcw size={16} />
-                <span>New lesson</span>
+              <button type="button" onClick={onOpenLessonPlans}>
+                <ArrowLeft size={16} />
+                <span>Back</span>
               </button>
+              <h1 className="chat-lesson-context">{lessonName}</h1>
             </div>
 
+            <div className="chat-thread" aria-live="polite">
             {messages.length ? (
               messages.map((message) => {
                 const MessageIcon = message.role === 'user' ? User : Bot;
@@ -230,11 +220,12 @@ export default function GeneratePage({
             )}
             <div ref={messagesEndRef} />
           </div>
+          </>
         ) : (
           <div className="generate-empty-state">
             <h1>
               <Sparkles className="headline-icon" size={44} />
-              <span>Evening Sean, Lets Create</span>
+              <span>What's next on your agenda?</span>
             </h1>
             <div className="lesson-required-panel">
               <input
@@ -293,7 +284,7 @@ export default function GeneratePage({
                 aria-label="Send message"
                 title="Send message"
               >
-                <Send size={25} />
+                <Send className="right-offset" size={24} />
               </button>
             </form>
 

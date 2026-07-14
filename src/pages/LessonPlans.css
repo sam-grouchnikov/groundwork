@@ -1,7 +1,7 @@
 .lesson-page {
   min-height: 100svh;
   box-sizing: border-box;
-  padding: 36px;
+  padding: 4px 32px 36px;
   color: var(--on-surfaces-on-surface);
   background: var(--backgrounds-sc-low);
 }
@@ -16,7 +16,7 @@
 
 .lesson-page-kicker {
   margin: 0 0 8px;
-  color: #0f6472;
+  color: var(--on-surfaces-on-surface-var);
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0;
@@ -31,48 +31,73 @@
 
 .lesson-board {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 360px));
   gap: 18px;
 }
 
 .lesson-board-card,
 .lesson-empty-state {
-  border: 1px solid rgba(111, 121, 121, 0.14);
+  border: 1px solid color-mix(in srgb, var(--on-surfaces-outline) 14%, transparent);
   border-radius: 18px;
   background: var(--backgrounds-sc-lowest);
-  box-shadow: 0 8px 22px rgba(16, 24, 40, 0.08);
+  box-shadow: 0 0 6px 0 color-mix(in srgb, var(--on-surfaces-on-surface) 22%, transparent);
 }
 
 .lesson-board-card {
   display: flex;
-  min-height: 190px;
+  min-height: 176px;
   flex-direction: column;
   justify-content: space-between;
   gap: 18px;
   padding: 20px;
 }
 
+.lesson-create-card {
+  align-items: center;
+  width: 155px;
+  justify-content: center;
+  border: 0;
+  color: var(--on-surfaces-on-surface-var);
+  cursor: pointer;
+  font: inherit;
+  transition: background 160ms ease, box-shadow 160ms ease;
+}
+
+.lesson-create-card:hover {
+  background: var(--backgrounds-sc-blue);
+  box-shadow: 0 0 6px 0 color-mix(in srgb, var(--on-surfaces-on-surface) 32%, transparent);
+}
+
+.lesson-create-card svg {
+  display: block;
+  transition: transform 160ms ease;
+}
+
+.lesson-create-card:hover svg {
+  transform: scale(1.05);
+}
+
 .lesson-card-main {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 14px;
 }
 
 .lesson-card-icon {
   display: inline-flex;
-  width: 48px;
-  height: 48px;
-  flex: 0 0 48px;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
   align-items: center;
   justify-content: center;
-  border-radius: 14px;
-  color: #0f6472;
-  background: #d8f0f7;
+  border-radius: 12px;
+  color: var(--on-surfaces-on-surface-var);
+  background: var(--actions-secondary);
 }
 
 .lesson-card-main h2 {
-  margin: 0 0 10px;
-  color: #0f6472;
+  margin: 0;
+  color: var(--on-surfaces-on-surface-var);
   font-size: 21px;
   line-height: 1.2;
 }
@@ -82,6 +107,48 @@
   min-width: 0;
 }
 
+.lesson-mastery {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lesson-mastery-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--on-surfaces-on-surface-var);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.lesson-plan-progress {
+  width: 100%;
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--surfaces-surface-dim);
+}
+
+.lesson-plan-progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.lesson-plan-progress-complete {
+  background: var(--mastery-complete);
+}
+
+.lesson-plan-progress-warning {
+  background: var(--mastery-warning);
+}
+
+.lesson-plan-progress-partial {
+  background: var(--mastery-partial);
+}
+
 .lesson-delete-button {
   display: inline-flex;
   width: 38px;
@@ -89,15 +156,15 @@
   flex: 0 0 38px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(156, 44, 31, 0.16);
+  border: 1px solid color-mix(in srgb, var(--on-surfaces-outline) 16%, transparent);
   border-radius: 12px;
-  color: #9c2c1f;
-  background: rgba(255, 255, 255, 0.76);
+  color: var(--on-surfaces-on-surface-var);
+  background: color-mix(in srgb, var(--backgrounds-sc-lowest) 76%, transparent);
   cursor: pointer;
 }
 
 .lesson-delete-button:hover {
-  background: rgba(156, 44, 31, 0.08);
+  background: color-mix(in srgb, var(--on-surfaces-outline) 8%, transparent);
 }
 
 .lesson-card-meta {
@@ -128,10 +195,11 @@
   gap: 8px;
   padding: 0 12px;
   border: 0;
-  border-radius: 12px;
-  color: #0f6472;
-  background: #d8f0f7;
+  border-radius: 16px;
+  color: var(--on-surfaces-on-surface-var);
+  background: var(--backgrounds-sc-low);
   cursor: pointer;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.18);
   font-weight: 600;
 }
 
@@ -144,9 +212,9 @@
   flex-direction: column;
   gap: 12px;
   padding: 14px;
-  border: 1px solid rgba(156, 44, 31, 0.18);
+  border: 1px solid color-mix(in srgb, var(--on-surfaces-outline) 18%, transparent);
   border-radius: 12px;
-  background: rgba(156, 44, 31, 0.06);
+  background: var(--backgrounds-sc-low);
 }
 
 .delete-confirmation-inline p {
@@ -170,15 +238,15 @@
 }
 
 .delete-cancel-button {
-  border: 1px solid rgba(111, 121, 121, 0.2);
+  border: 1px solid color-mix(in srgb, var(--on-surfaces-outline) 20%, transparent);
   color: var(--on-surfaces-on-surface-var);
   background: var(--backgrounds-sc-lowest);
 }
 
 .delete-confirm-button {
   border: 0;
-  color: #ffffff;
-  background: #9c2c1f;
+  color: var(--backgrounds-sc-lowest);
+  background: var(--error);
 }
 
 .lesson-empty-state {
@@ -189,7 +257,7 @@
   justify-content: center;
   gap: 10px;
   padding: 28px;
-  color: #0f6472;
+  color: var(--on-surfaces-on-surface-var);
   text-align: center;
 }
 
@@ -208,7 +276,7 @@
 
 @media (max-width: 760px) {
   .lesson-page {
-    padding: 24px 18px;
+    padding: 8px 20px 24px;
   }
 
   .lesson-page-header {

@@ -4,7 +4,7 @@
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
     --actions-primary: #6feddb;
-    --actions-secondary: #22c4e1;
+    --actions-secondary: #94EDFE;
 
     --backgrounds-sc-lowest: #ffffff;
     --backgrounds-sc-low: #eff5f4;
@@ -13,10 +13,17 @@
     --backgrounds-sc-highest: #dde4e3;
     --backgrounds-sc-teal: #cdecec;
     --backgrounds-sc-blue: #ddf2f8;
+    --backgrounds-sc-blue-intense: #BEE9F3;
     --backgrounds-green-container: #e1f8dd;
+
+    --mastery-complete: #079d08;
+    --mastery-warning: #e3aa04;
+    --mastery-partial: #E32002;
 
     --surfaces-surface: #f4fbfa;
     --surfaces-surface-dim: #d5dbdb;
+
+    --error: #ba1a1a;
 
     --on-surfaces-on-surface: #161d1d;
     --on-surfaces-on-surface-var: #3f4949;

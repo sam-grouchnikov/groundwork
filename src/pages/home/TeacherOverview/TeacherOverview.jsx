@@ -13,19 +13,7 @@ const LESSON_COMPLETION = [
     { label: '7/21', value: 4, tone: 'muted' },
 ];
 
-const STUDENTS = [
-    { initials: 'CJ', name: 'Curtis Jackson' },
-    { initials: 'RK', name: 'Robert Kelly' },
-    { initials: 'LM', name: 'Lionel Messi' },
-    { initials: 'EH', name: 'Erling Haaland' },
-    { initials: 'CJ', name: 'Curtis Jackson' },
-    { initials: 'RK', name: 'Robert Kelly' },
-    { initials: 'LM', name: 'Lionel Messi' },
-    { initials: 'EH', name: 'Erling Haaland' },
-];
-
-
-export default function TeacherOverview() {
+export default function TeacherOverview({ students = [] }) {
     const cardRef = useRef(null);
     const [availableHeight, setAvailableHeight] = useState(null);
 
@@ -130,8 +118,8 @@ export default function TeacherOverview() {
             <div className={"text-level-2"}>Students</div>
 
             <div className="info-container students-card">
-                {STUDENTS.map(({ initials, name }) => (
-                    <div key={name} className="student-row">
+                {students.map(({ id, initials, name }) => (
+                    <div key={id} className="student-row">
                         <div className="student-chip">{initials}</div>
                         <div className="student-name">{name}</div>
                         <button className="student-action" type="button" aria-label={`Message ${name}`}>

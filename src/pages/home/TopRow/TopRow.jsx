@@ -2,7 +2,7 @@ import { BellDot, Search } from 'lucide-react';
 import profileMememoji from '../../../assets/ProfileMememoji.svg';
 import './TopRow.css';
 
-export default function TopRow({ profileName = 'Sean Combs' }) {
+export default function TopRow({ profileName = 'Sean Sean' }) {
   return (
     <header className="top-row" aria-label="Home toolbar">
       <label className="top-row-search">

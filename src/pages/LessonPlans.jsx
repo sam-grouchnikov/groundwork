@@ -1,18 +1,31 @@
 import { useState } from 'react';
 import {
   BookOpenCheck,
-  CalendarDays,
   ChevronRight,
   MessageCircleMore,
-  MessagesSquare,
+  Plus,
   Trash2,
 } from 'lucide-react';
+import TopRow from './home/TopRow/TopRow.jsx';
 import './LessonPlans.css';
+
+function getProgressTone(mastery) {
+  if (mastery >= 80) {
+    return 'complete';
+  }
+
+  if (mastery >= 50) {
+    return 'warning';
+  }
+
+  return 'partial';
+}
 
 export default function LessonPlansPage({
   lessons = [],
   onContinueLesson,
   onDeleteLesson,
+  onOpenGenerate,
 }) {
   const [lessonPendingDeleteId, setLessonPendingDeleteId] = useState('');
 
@@ -23,6 +36,8 @@ export default function LessonPlansPage({
 
   return (
     <section className="lesson-page">
+      <TopRow />
+
       <header className="lesson-page-header">
         <div>
           <p className="lesson-page-kicker">Course Materials</p>
@@ -30,84 +45,90 @@ export default function LessonPlansPage({
         </div>
       </header>
 
-      {lessons.length ? (
-        <div className="lesson-board">
-          {lessons.map((lesson) => {
-            const isPendingDelete = lessonPendingDeleteId === lesson.id;
+      <div className="lesson-board">
+        {lessons.map((lesson) => {
+          const isPendingDelete = lessonPendingDeleteId === lesson.id;
+          const mastery = lesson.mastery ?? 0;
+          const progressTone = lesson.progressTone ?? getProgressTone(mastery);
 
-            return (
-              <article className="lesson-board-card" key={lesson.id}>
-                <div className="lesson-card-main">
-                  <div className="lesson-card-icon" aria-hidden="true">
-                    <BookOpenCheck size={24} />
-                  </div>
-                  <div>
-                    <h2>{lesson.title}</h2>
-                    <div className="lesson-card-meta">
-                      <span>
-                        <CalendarDays size={16} />
-                        Created {lesson.created}
-                      </span>
-                      <span>
-                        <MessagesSquare size={16} />
-                        {lesson.messages?.length ?? 0} chat message
-                        {(lesson.messages?.length ?? 0) === 1 ? '' : 's'}
-                      </span>
-                    </div>
-                  </div>
-                  <button
-                    className="lesson-delete-button"
-                    onClick={() => setLessonPendingDeleteId(lesson.id)}
-                    type="button"
-                    aria-label={`Delete ${lesson.title}`}
-                    title={`Delete ${lesson.title}`}
-                  >
-                    <Trash2 size={18} />
-                  </button>
+          return (
+            <article className="lesson-board-card" key={lesson.id}>
+              <div className="lesson-card-main">
+                <div className="lesson-card-icon" aria-hidden="true">
+                  <BookOpenCheck size={22} />
                 </div>
+                <div>
+                  <h2>{lesson.title}</h2>
+                </div>
+                <button
+                  className="lesson-delete-button"
+                  onClick={() => setLessonPendingDeleteId(lesson.id)}
+                  type="button"
+                  aria-label={`Delete ${lesson.title}`}
+                  title={`Delete ${lesson.title}`}
+                >
+                  <Trash2 size={18} />
+                </button>
+              </div>
 
-                {isPendingDelete ? (
-                  <div className="delete-confirmation-inline">
-                    <p>Delete this lesson and its chat history?</p>
-                    <div>
-                      <button
-                        className="delete-cancel-button"
-                        onClick={() => setLessonPendingDeleteId('')}
-                        type="button"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        className="delete-confirm-button"
-                        onClick={confirmDeleteLesson}
-                        type="button"
-                      >
-                        Delete
-                      </button>
-                    </div>
+              <div className="lesson-mastery">
+                <div className="lesson-mastery-label">
+                  <span>Mastery</span>
+                  <span>{mastery}%</span>
+                </div>
+                <div className="lesson-plan-progress" aria-label={`${mastery}% mastery`}>
+                  <span
+                    className={`lesson-plan-progress-fill lesson-plan-progress-${progressTone}`}
+                    style={{ width: `${mastery}%` }}
+                  />
+                </div>
+              </div>
+
+              {isPendingDelete ? (
+                <div className="delete-confirmation-inline">
+                  <p>Delete this lesson and its chat history?</p>
+                  <div>
+                    <button
+                      className="delete-cancel-button"
+                      onClick={() => setLessonPendingDeleteId('')}
+                      type="button"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      className="delete-confirm-button"
+                      onClick={confirmDeleteLesson}
+                      type="button"
+                    >
+                      Delete
+                    </button>
                   </div>
-                ) : (
-                  <button
-                    className="history-button"
-                    onClick={() => onContinueLesson(lesson.id)}
-                    type="button"
-                  >
-                    <MessageCircleMore size={18} />
-                    <span>Open lesson chat</span>
-                    <ChevronRight size={18} />
-                  </button>
-                )}
-              </article>
-            );
-          })}
+                </div>
+              ) : (
+                <button
+                  className="history-button"
+                  onClick={() => onContinueLesson(lesson.id)}
+                  type="button"
+                >
+                  <MessageCircleMore size={18} />
+                  <span>Go to lesson</span>
+                  <ChevronRight size={18} />
+                </button>
+              )}
+            </article>
+          );
+        })}
+
+        <button
+          className="lesson-board-card lesson-create-card"
+          onClick={onOpenGenerate}
+          type="button"
+          aria-label="Create lesson plan"
+          title="Create lesson plan"
+        >
+          <Plus size={36} strokeWidth={2} />
+        </button>
         </div>
-      ) : (
-        <div className="lesson-empty-state">
-          <BookOpenCheck size={36} />
-          <h2>No lesson plans yet</h2>
-          <p>Start a new lesson from Generate to create its chat history.</p>
-        </div>
-      )}
     </section>
   );
 }

@@ -1,34 +1,29 @@
-import { CalendarDays, ChevronRight, UserCheck } from "lucide-react";
+import { CalendarDays, ChevronRight, Plus, UserCheck } from "lucide-react";
 import "./ClassDetails.css";
 
-const LESSON_PLANS = [
-    {
-        title: "Implicit Differentiation",
-        created: "7/07/26",
-        mastery: 100,
-        progressTone: "complete",
-    },
-    {
-        title: "Area with Integrals",
-        created: "7/12/26",
-        mastery: 60,
-        progressTone: "warning",
-    },
-    {
-        title: "Series Convergence",
-        created: "7/18/26",
-        mastery: 35,
-        progressTone: "partial",
-    },
-];
+function getProgressTone(mastery) {
+    if (mastery >= 80) {
+        return "complete";
+    }
 
-export default function LessonPlansRow() {
+    if (mastery >= 50) {
+        return "warning";
+    }
+
+    return "partial";
+}
+
+export default function LessonPlansRow({
+    lessons = [],
+    onContinueLesson,
+    onOpenGenerate,
+}) {
     return (
         <section className="lesson-plans-section" aria-labelledby="lesson-plans-heading">
             <h2 id="lesson-plans-heading" className="lesson-plans-heading">Lesson Plans</h2>
             <div className="lesson-plans-scroll" aria-label="Lesson plans">
-                {LESSON_PLANS.map(({ title, created, mastery, progressTone }) => (
-                    <article className="lesson-plan-card" key={title}>
+                {lessons.map(({ id, title, created, mastery = 0, progressTone }) => (
+                    <article className="lesson-plan-card" key={id}>
                         <h3 className="lesson-plan-title">{title}</h3>
 
                         <div className="lesson-plan-content">
@@ -48,19 +43,34 @@ export default function LessonPlansRow() {
                                 </div>
                             </div>
 
-                            <button className="lesson-plan-action" type="button" aria-label={`Open ${title}`}>
+                            <button
+                                className="lesson-plan-action"
+                                onClick={() => onContinueLesson(id)}
+                                type="button"
+                                aria-label={`Open ${title}`}
+                            >
                                 <ChevronRight size={44} strokeWidth={1.8} />
                             </button>
                         </div>
 
                         <div className="lesson-plan-progress" aria-label={`${mastery}% mastery`}>
                             <span
-                                className={`lesson-plan-progress-fill lesson-plan-progress-${progressTone}`}
+                                className={`lesson-plan-progress-fill lesson-plan-progress-${progressTone ?? getProgressTone(mastery)}`}
                                 style={{ width: `${mastery}%` }}
                             />
                         </div>
                     </article>
                 ))}
+
+                <button
+                    className="lesson-plan-card lesson-plan-create-card"
+                    onClick={onOpenGenerate}
+                    type="button"
+                    aria-label="Create lesson plan"
+                    title="Create lesson plan"
+                >
+                    <Plus size={36} strokeWidth={2} />
+                </button>
             </div>
         </section>
     );

@@ -6,7 +6,12 @@ import LessonPlansRow from "./ClassDetails/LessonPlansRow.jsx";
 import TeacherOverview from "./TeacherOverview/TeacherOverview.jsx";
 import "./Home.css"
 
-export default function HomePage() {
+export default function HomePage({
+  lessons = [],
+  students = [],
+  onContinueLesson,
+  onOpenGenerate,
+}) {
   const classDetailsRef = useRef(null);
   const [classDetailsHeight, setClassDetailsHeight] = useState(null);
 
@@ -63,12 +68,16 @@ export default function HomePage() {
                 className="class-details-column"
                 style={classDetailsHeight ? { '--class-details-max-height': `${classDetailsHeight}px` } : undefined}
             >
-                <ClassCard />
-                <LessonPlansRow />
+                <ClassCard onOpenGenerate={onOpenGenerate} />
+                <LessonPlansRow
+                    lessons={lessons}
+                    onContinueLesson={onContinueLesson}
+                    onOpenGenerate={onOpenGenerate}
+                />
                 <AssignmentsRow />
             </div>
             <div className="teacher-overview-column">
-                <TeacherOverview />
+                <TeacherOverview students={students} />
             </div>
         </div>
 

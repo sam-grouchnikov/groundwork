@@ -17,6 +17,37 @@ import LessonChatPage from './pages/LessonChat.jsx';
 
 const INITIAL_LESSONS = [];
 
+const INITIAL_STUDENTS = [
+  { id: 'student-curtis-jackson', initials: 'CJ', name: 'Curtis Jackson' },
+  { id: 'student-robert-kelly', initials: 'RK', name: 'Robert Kelly' },
+  { id: 'student-lionel-messi', initials: 'LM', name: 'Lionel Messi' },
+  { id: 'student-erling-haaland', initials: 'EH', name: 'Erling Haaland' },
+  { id: 'student-curtis-jackson-2', initials: 'CJ', name: 'Curtis Jackson' },
+  { id: 'student-robert-kelly-2', initials: 'RK', name: 'Robert Kelly' },
+  { id: 'student-lionel-messi-2', initials: 'LM', name: 'Lionel Messi' },
+  { id: 'student-erling-haaland-2', initials: 'EH', name: 'Erling Haaland' },
+];
+
+function getProgressTone(mastery) {
+  if (mastery >= 80) {
+    return 'complete';
+  }
+
+  if (mastery >= 50) {
+    return 'warning';
+  }
+
+  return 'partial';
+}
+
+function getLessonMasteryDefault(lesson) {
+  if (typeof lesson.mastery === 'number') {
+    return lesson.mastery;
+  }
+
+  return 0;
+}
+
 const NAV_ITEMS = [
   { id: 'home', label: 'Home', icon: Home },
   { id: 'class-editor', label: 'Class Editor', icon: FilePenLine },
@@ -37,12 +68,22 @@ const PAGES = {
 export default function App() {
   const [activeId, setActiveId] = useState('home');
   const [lessons, setLessons] = useState(INITIAL_LESSONS);
+  const [students] = useState(INITIAL_STUDENTS);
   const [lessonToContinueId, setLessonToContinueId] = useState('');
   const ActiveComponent = PAGES[activeId];
   const activeNavId = activeId === 'lesson-chat' ? 'lesson-plans' : activeId;
 
   const addLesson = useCallback((lesson) => {
-    setLessons((currentLessons) => [lesson, ...currentLessons]);
+    const mastery = getLessonMasteryDefault(lesson);
+
+    setLessons((currentLessons) => [
+      {
+        ...lesson,
+        mastery,
+        progressTone: lesson.progressTone ?? getProgressTone(mastery),
+      },
+      ...currentLessons,
+    ]);
   }, []);
 
   const updateLessonMessages = useCallback((lessonId, messages) => {
@@ -70,6 +111,11 @@ export default function App() {
   const openLessonPlans = useCallback(() => {
     setLessonToContinueId('');
     setActiveId('lesson-plans');
+  }, []);
+
+  const openGenerate = useCallback(() => {
+    setLessonToContinueId('');
+    setActiveId('generate');
   }, []);
 
   function handleNavigation(pageId) {
@@ -106,9 +152,11 @@ export default function App() {
         <ActiveComponent
           lessonToContinueId={lessonToContinueId}
           lessons={lessons}
+          students={students}
           onAddLesson={addLesson}
           onContinueLesson={openLessonChat}
           onDeleteLesson={deleteLesson}
+          onOpenGenerate={openGenerate}
           onOpenLessonPlans={openLessonPlans}
           onUpdateLessonMessages={updateLessonMessages}
         />
