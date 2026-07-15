@@ -135,7 +135,7 @@
 }
 
 .student-roster-table tbody tr:hover {
-  background: rgba(244, 251, 250, 0.96);
+  background: var(--backgrounds-sc-low);
 }
 
 .student-roster-table th,
@@ -147,7 +147,7 @@
   width: 18px;
   height: 18px;
   margin: 0 12px 0 0;
-  accent-color: var(--actions-secondary-intense);
+  accent-color: var(--backgrounds-sc-highest);
   vertical-align: middle;
 }
 
