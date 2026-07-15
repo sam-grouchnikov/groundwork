@@ -6,7 +6,7 @@ import {
   Plus,
   Trash2,
 } from 'lucide-react';
-import TopRow from './home/TopRow/TopRow.jsx';
+import TopRow from '../home/TopRow/TopRow.jsx';
 import './LessonPlans.css';
 
 function getProgressTone(mastery) {

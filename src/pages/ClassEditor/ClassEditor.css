@@ -103,13 +103,13 @@
   border-collapse: collapse;
   table-layout: fixed;
   color: var(--on-surfaces-on-surface-var);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .student-roster-table th,
 .student-roster-table td {
-  height: 36px;
-  padding: 0 20px;
+  height: 41px;
+  padding: 0 23px;
   border-right: 1px solid #c3d0d2;
   text-align: left;
   vertical-align: middle;
@@ -117,8 +117,8 @@
 
 .student-roster-table th:last-child,
 .student-roster-table td:last-child {
-  width: 52px;
-  padding: 0 12px;
+  width: 60px;
+  padding: 0 14px;
   border-right: 0;
   text-align: center;
 }
@@ -126,7 +126,7 @@
 .student-roster-table th {
   background: #d8f2f5;
   color: var(--on-surfaces-on-surface-var);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
 }
 
@@ -144,15 +144,17 @@
 }
 
 .student-roster-table input[type='checkbox'] {
-  width: 16px;
-  height: 16px;
-  margin: 0 10px 0 0;
-  accent-color: var(--actions-primary);
+  width: 18px;
+  height: 18px;
+  margin: 0 12px 0 0;
+  accent-color: var(--actions-secondary-intense);
   vertical-align: middle;
 }
 
 .student-roster-table th svg {
-  margin-right: 8px;
+  width: 18px;
+  height: 18px;
+  margin-right: 9px;
   color: var(--on-surfaces-on-surface-var);
   vertical-align: text-bottom;
 }
@@ -167,13 +169,13 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-  min-width: 66px;
-  min-height: 24px;
-  padding: 0 10px;
+  min-width: 76px;
+  min-height: 28px;
+  padding: 0 12px;
   border-radius: 999px;
   box-sizing: border-box;
   color: var(--on-surfaces-on-surface-var);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -197,8 +199,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border: 0;
   border-radius: 8px;
   background: transparent;

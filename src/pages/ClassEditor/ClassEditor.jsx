@@ -15,8 +15,8 @@ import {
 import {
   CLASS_SETUP_SECTION_DEFINITIONS,
   useClassEditorViewModel,
-} from '../viewmodel/classEditorViewModel.js';
-import TopRow from './home/TopRow/TopRow.jsx';
+} from '../../viewmodel/classEditorViewModel.js';
+import TopRow from '../home/TopRow/TopRow.jsx';
 import './ClassEditor.css';
 
 const SETUP_SECTION_ICONS = {

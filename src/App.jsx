@@ -8,11 +8,11 @@ import {
 import './App.css';
 import logo from './assets/logo.svg';
 import HomePage from './pages/home/Home.jsx';
-import ClassEditorPage from './pages/ClassEditor.jsx';
-import MasteryPage from './pages/Mastery.jsx';
-import GeneratePage from './pages/Generate.jsx';
-import LessonPlansPage from './pages/LessonPlans.jsx';
-import LessonChatPage from './pages/LessonChat.jsx';
+import ClassEditorPage from './pages/ClassEditor/ClassEditor.jsx';
+import MasteryPage from './pages/Mastery/Mastery.jsx';
+import GeneratePage from './pages/Generate/Generate.jsx';
+import LessonPlansPage from './pages/LessonPlans/LessonPlans.jsx';
+import LessonChatPage from './pages/LessonChat/LessonChat.jsx';
 import { useAppViewModel } from './viewmodel/appViewModel.js';
 
 const NAV_ITEMS = [
