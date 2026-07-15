@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-  ArrowLeft,
+  ChevronLeft,
   BookOpenCheck,
   Bot,
   ClipboardCheck,
@@ -177,8 +177,7 @@ export default function GeneratePage({
           <>
             <div className="chat-session-bar">
               <button type="button" onClick={onOpenLessonPlans}>
-                <ArrowLeft size={16} />
-                <span>Back</span>
+                <ChevronLeft size={28} />
               </button>
               <h1 className="chat-lesson-context">{lessonName}</h1>
             </div>

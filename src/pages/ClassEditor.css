@@ -1,0 +1,364 @@
+.class-editor-page {
+  min-height: 100%;
+  padding: 4px 32px 36px;
+  box-sizing: border-box;
+  color: var(--on-surfaces-on-surface);
+}
+
+.class-editor-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.class-setup-section h1,
+.student-roster-section h2 {
+  margin: 0 0 14px;
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.class-setup-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(190px, 1fr));
+  gap: 34px;
+  max-width: 980px;
+}
+
+.class-setup-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 82px;
+  padding: 18px 22px;
+  border: 1px solid #cfdcdd;
+  border-radius: 10px;
+  background: var(--surfaces-surface);
+  box-shadow: 0 1px 3px rgba(22, 29, 29, 0.12);
+  color: var(--on-surfaces-on-surface-var);
+  cursor: pointer;
+  text-align: left;
+  transition:
+    background 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease,
+    border-color 160ms ease;
+}
+
+.class-setup-card:hover,
+.class-setup-card:focus-visible {
+  background: #f9fffe;
+  border-color: #9ed7d5;
+  box-shadow: 0 10px 24px rgba(17, 86, 91, 0.12);
+  transform: translateY(-1px);
+}
+
+.class-setup-card:focus-visible {
+  outline: 3px solid rgba(111, 237, 219, 0.42);
+  outline-offset: 2px;
+}
+
+.class-setup-card-icon {
+  flex: 0 0 auto;
+  color: #6c7b7b;
+}
+
+.class-setup-card-copy {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.class-setup-card-copy > span {
+  color: var(--on-surfaces-on-surface-var);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.class-setup-card-copy small {
+  color: #687575;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.class-setup-edit-icon {
+  flex: 0 0 auto;
+  color: #0088ff;
+}
+
+.student-roster-table-wrap {
+  max-width: 980px;
+  overflow: hidden;
+  border: 1px solid #cbdfe1;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 1px 3px rgba(22, 29, 29, 0.08);
+}
+
+.student-roster-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  color: var(--on-surfaces-on-surface-var);
+  font-size: 14px;
+}
+
+.student-roster-table th,
+.student-roster-table td {
+  height: 36px;
+  padding: 0 20px;
+  border-right: 1px solid #c3d0d2;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.student-roster-table th:last-child,
+.student-roster-table td:last-child {
+  width: 52px;
+  padding: 0 12px;
+  border-right: 0;
+  text-align: center;
+}
+
+.student-roster-table th {
+  background: #d8f2f5;
+  color: var(--on-surfaces-on-surface-var);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.student-roster-table tbody tr {
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.student-roster-table tbody tr:hover {
+  background: rgba(244, 251, 250, 0.96);
+}
+
+.student-roster-table th,
+.student-roster-table td:first-child {
+  white-space: nowrap;
+}
+
+.student-roster-table input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  margin: 0 10px 0 0;
+  accent-color: var(--actions-primary);
+  vertical-align: middle;
+}
+
+.student-roster-table th svg {
+  margin-right: 8px;
+  color: var(--on-surfaces-on-surface-var);
+  vertical-align: text-bottom;
+}
+
+.student-roster-table td:first-child span,
+.student-roster-table th span {
+  vertical-align: middle;
+}
+
+.mastery-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 66px;
+  min-height: 24px;
+  padding: 0 10px;
+  border-radius: 999px;
+  box-sizing: border-box;
+  color: var(--on-surfaces-on-surface-var);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.mastery-pill-strong {
+  background: #b9f3bd;
+}
+
+.mastery-pill-good {
+  background: #edf2a8;
+}
+
+.mastery-pill-watch {
+  background: #ffe4aa;
+}
+
+.mastery-pill-needs-support {
+  background: #ffb8b5;
+}
+
+.student-delete-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--error);
+  cursor: pointer;
+}
+
+.student-delete-button:hover,
+.student-delete-button:focus-visible {
+  background: rgba(186, 26, 26, 0.09);
+}
+
+.class-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(22, 29, 29, 0.32);
+  backdrop-filter: blur(4px);
+  box-sizing: border-box;
+}
+
+.class-modal {
+  width: min(560px, 100%);
+  border: 1px solid rgba(196, 198, 208, 0.9);
+  border-radius: 18px;
+  background: var(--backgrounds-sc-lowest);
+  box-shadow: 0 24px 70px rgba(22, 29, 29, 0.24);
+  overflow: hidden;
+}
+
+.class-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 26px 18px;
+  border-bottom: 1px solid #dce8e8;
+  background: linear-gradient(180deg, #f7fffe 0%, #eef8f8 100%);
+}
+
+.class-modal-header p {
+  margin: 0 0 6px;
+  color: var(--on-surfaces-outline);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.class-modal-header h2 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.class-modal-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #cddbdc;
+  border-radius: 50%;
+  background: var(--surfaces-surface);
+  color: var(--on-surfaces-on-surface-var);
+  cursor: pointer;
+}
+
+.class-modal-fields {
+  display: grid;
+  gap: 18px;
+  padding: 24px 26px;
+}
+
+.class-modal-field {
+  display: grid;
+  gap: 8px;
+}
+
+.class-modal-field span {
+  color: var(--on-surfaces-on-surface-var);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.class-modal-field input,
+.class-modal-field textarea {
+  width: 100%;
+  border: 1px solid #c4d2d3;
+  border-radius: 10px;
+  background: #fbffff;
+  color: var(--on-surfaces-on-surface);
+  padding: 12px 14px;
+  box-sizing: border-box;
+  outline: 0;
+}
+
+.class-modal-field textarea {
+  min-height: 118px;
+  resize: vertical;
+}
+
+.class-modal-field input:focus,
+.class-modal-field textarea:focus {
+  border-color: #47c9c1;
+  box-shadow: 0 0 0 3px rgba(111, 237, 219, 0.3);
+}
+
+.class-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 18px 26px 24px;
+}
+
+.class-modal-actions button {
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.class-modal-secondary {
+  border: 1px solid #c8d5d6;
+  background: var(--backgrounds-sc-lowest);
+  color: var(--on-surfaces-on-surface-var);
+}
+
+.class-modal-primary {
+  border: 1px solid #54d6c7;
+  background: var(--actions-primary);
+  color: var(--on-surfaces-on-surface);
+}
+
+@media (max-width: 980px) {
+  .class-setup-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .student-roster-table-wrap {
+    overflow-x: auto;
+  }
+
+  .student-roster-table {
+    min-width: 760px;
+  }
+}
+
+@media (max-width: 720px) {
+  .class-editor-page {
+    padding: 4px 20px 28px;
+  }
+
+  .class-modal-backdrop {
+    align-items: flex-end;
+    padding: 12px;
+  }
+}

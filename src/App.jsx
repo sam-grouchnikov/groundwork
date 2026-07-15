@@ -1,4 +1,3 @@
-import { useCallback, useState } from 'react';
 import {
   Home,
   FilePenLine,
@@ -14,39 +13,7 @@ import MasteryPage from './pages/Mastery.jsx';
 import GeneratePage from './pages/Generate.jsx';
 import LessonPlansPage from './pages/LessonPlans.jsx';
 import LessonChatPage from './pages/LessonChat.jsx';
-
-const INITIAL_LESSONS = [];
-
-const INITIAL_STUDENTS = [
-  { id: 'student-curtis-jackson', initials: 'CJ', name: 'Curtis Jackson' },
-  { id: 'student-robert-kelly', initials: 'RK', name: 'Robert Kelly' },
-  { id: 'student-lionel-messi', initials: 'LM', name: 'Lionel Messi' },
-  { id: 'student-erling-haaland', initials: 'EH', name: 'Erling Haaland' },
-  { id: 'student-curtis-jackson-2', initials: 'CJ', name: 'Curtis Jackson' },
-  { id: 'student-robert-kelly-2', initials: 'RK', name: 'Robert Kelly' },
-  { id: 'student-lionel-messi-2', initials: 'LM', name: 'Lionel Messi' },
-  { id: 'student-erling-haaland-2', initials: 'EH', name: 'Erling Haaland' },
-];
-
-function getProgressTone(mastery) {
-  if (mastery >= 80) {
-    return 'complete';
-  }
-
-  if (mastery >= 50) {
-    return 'warning';
-  }
-
-  return 'partial';
-}
-
-function getLessonMasteryDefault(lesson) {
-  if (typeof lesson.mastery === 'number') {
-    return lesson.mastery;
-  }
-
-  return 0;
-}
+import { useAppViewModel } from './viewmodel/appViewModel.js';
 
 const NAV_ITEMS = [
   { id: 'home', label: 'Home', icon: Home },
@@ -66,65 +33,22 @@ const PAGES = {
 };
 
 export default function App() {
-  const [activeId, setActiveId] = useState('home');
-  const [lessons, setLessons] = useState(INITIAL_LESSONS);
-  const [students] = useState(INITIAL_STUDENTS);
-  const [lessonToContinueId, setLessonToContinueId] = useState('');
+  const {
+    activeId,
+    activeNavId,
+    lessonToContinueId,
+    lessons,
+    students,
+    addLesson,
+    deleteLesson,
+    deleteStudent,
+    navigate,
+    openGenerate,
+    openLessonChat,
+    openLessonPlans,
+    updateLessonMessages,
+  } = useAppViewModel();
   const ActiveComponent = PAGES[activeId];
-  const activeNavId = activeId === 'lesson-chat' ? 'lesson-plans' : activeId;
-
-  const addLesson = useCallback((lesson) => {
-    const mastery = getLessonMasteryDefault(lesson);
-
-    setLessons((currentLessons) => [
-      {
-        ...lesson,
-        mastery,
-        progressTone: lesson.progressTone ?? getProgressTone(mastery),
-      },
-      ...currentLessons,
-    ]);
-  }, []);
-
-  const updateLessonMessages = useCallback((lessonId, messages) => {
-    setLessons((currentLessons) =>
-      currentLessons.map((lesson) =>
-        lesson.id === lessonId ? { ...lesson, messages } : lesson,
-      ),
-    );
-  }, []);
-
-  const deleteLesson = useCallback((lessonId) => {
-    setLessons((currentLessons) =>
-      currentLessons.filter((lesson) => lesson.id !== lessonId),
-    );
-    setLessonToContinueId((currentLessonId) =>
-      currentLessonId === lessonId ? '' : currentLessonId,
-    );
-  }, []);
-
-  const openLessonChat = useCallback((lessonId) => {
-    setLessonToContinueId(lessonId);
-    setActiveId('lesson-chat');
-  }, []);
-
-  const openLessonPlans = useCallback(() => {
-    setLessonToContinueId('');
-    setActiveId('lesson-plans');
-  }, []);
-
-  const openGenerate = useCallback(() => {
-    setLessonToContinueId('');
-    setActiveId('generate');
-  }, []);
-
-  function handleNavigation(pageId) {
-    if (pageId !== 'lesson-chat') {
-      setLessonToContinueId('');
-    }
-
-    setActiveId(pageId);
-  }
 
   return (
     <div className="app-shell">
@@ -138,7 +62,7 @@ export default function App() {
             <li key={id}>
               <button
                 className={activeNavId === id ? 'active' : undefined}
-                onClick={() => handleNavigation(id)}
+                onClick={() => navigate(id)}
               >
                 <Icon size={18} />
                 <span>{label}</span>
@@ -156,6 +80,7 @@ export default function App() {
           onAddLesson={addLesson}
           onContinueLesson={openLessonChat}
           onDeleteLesson={deleteLesson}
+          onDeleteStudent={deleteStudent}
           onOpenGenerate={openGenerate}
           onOpenLessonPlans={openLessonPlans}
           onUpdateLessonMessages={updateLessonMessages}

@@ -132,7 +132,7 @@
     padding: 20px 22px 20px;
     border-radius: 18px;
     background: var(--backgrounds-sc-lowest);
-    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.22);
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.22);
     box-sizing: border-box;
 }
 
@@ -245,7 +245,7 @@
 
 .lesson-plan-create-card:hover {
     background: var(--backgrounds-sc-blue);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.32);
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.32);
 }
 
 .lesson-plan-create-card svg {
