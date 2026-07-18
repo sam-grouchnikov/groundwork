@@ -49,7 +49,7 @@ const INITIAL_STUDENTS = [
     name: 'Robert Kelly',
     email: 'robert.kelly@dbu.edu',
     mastery: 71,
-    lastActive: '2 Days Ago',
+    lastActive: '3 Days Ago',
   },
   {
     id: 'student-lionel-messi-2',
